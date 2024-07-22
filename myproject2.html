@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analytics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Financial Analytics</h1>
+
+    <div>
+        <label for="stockPrices">Enter Stock Prices (comma-separated):</label><br>
+        <input type="text" id="stockPrices"><br>
+        <button onclick="calculateAverage()">Calculate Average</button>
+    </div>
+
+    <div id="result">
+        <!-- Result will be displayed here -->
+    </div>
+
+    <script>
+        function calculateAverage() {
+            var stockPricesInput = document.getElementById('stockPrices').value;
+            var stockPrices = stockPricesInput.split(',').map(function(price) {
+                return parseFloat(price.trim());
+            });
+
+            if (stockPrices.length === 0 || isNaN(stockPrices[0])) {
+                alert('Please enter valid numbers separated by commas.');
+                return;
+            }
+
+            var sum = stockPrices.reduce(function(acc, curr) {
+                return acc + curr;
+            }, 0);
+
+            var average = sum / stockPrices.length;
+
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Average Stock Price: <strong>$' + average.toFixed(2) + '</strong></p>';
+        }
+    </script>
+</body>
+</html>
+
+            
